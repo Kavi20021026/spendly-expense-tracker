@@ -114,8 +114,8 @@ service cloud.firestore {
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/spendly.git
-   cd spendly
+   git clone https://github.com/Kavi20021026/spendly-expense-tracker.git
+   cd spendly-expense-tracker
    ```
 
 2. **Install dependencies**:
