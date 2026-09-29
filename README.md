@@ -5,6 +5,30 @@ Spendly is a modern, production-style personal expense tracker mobile applicatio
 
 ---
 
+## ✅ Practical Task Requirements Compliance
+
+| CyphLab Requirement | Type | Status | Spendly Implementation |
+| :--- | :---: | :---: | :--- |
+| **Add New Expenses** | Core | ✅ Completed | Quick-add form with category picker, date picker & note |
+| **Edit Existing Expenses** | Core | ✅ Completed | Pre-populated form with seamless in-place updating |
+| **Delete Expenses** | Core | ✅ Completed | Deletion with confirmation dialog & live total recalculation |
+| **Expense Categories** | Core | ✅ Completed | 9 color-coded categories with dedicated icons |
+| **Store Using Firebase** | Core | ✅ Completed | Real-time Cloud Firestore with user subcollection isolation |
+| **Display Current Month Total** | Core | ✅ Completed | Hero wallet card with total, transaction count & average spend |
+| **Expense History / List** | Core | ✅ Completed | Organized list with formatted currency (`Rs.`) and dates |
+| **Filter by Category & Date** | Core | ✅ Completed | Interactive category chips and custom date range picker |
+| **Form Validation** | Core | ✅ Completed | Title, positive amount, valid date, and auth validation |
+| **Loading, Empty & Error States** | Core | ✅ Completed | Shimmer loading skeletons, custom illustrations & error banners |
+| **Expense Fields** | Core | ✅ Completed | Title, Amount, Category, Date, and optional Note |
+| **Simple Expense Chart** | Optional | ✅ Completed | Interactive doughnut chart built with `fl_chart` |
+| **Dark Mode** | Optional | ✅ Completed | Material 3 Dark/Light themes persisted via `shared_preferences` |
+| **Monthly / Category Summary** | Optional | ✅ Completed | Category-wise percentage breakdown & top spending category |
+| **Search Functionality** | Optional | ✅ Completed | Instant real-time search across titles, notes, and categories |
+| **Firebase Authentication** | Optional | ✅ Completed | Email/password login, register, password toggle & AuthGate |
+| **Additional Polish** | Optional | ✅ Completed | 3-step interactive onboarding slider, splash screen & 14 unit/widget tests |
+
+---
+
 ## 📱 Features
 
 - 🔐 **Firebase Authentication**: Secure user login and registration with validation, password toggle, and error handling.
