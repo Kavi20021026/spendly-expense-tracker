@@ -13,8 +13,8 @@ abstract class AppStyles {
   // Border Radius
   static const double radiusSm = 8.0;
   static const double radiusMd = 12.0;
-  static const double radiusLg = 16.0;
-  static const double radiusXl = 24.0;
+  static const double radiusLg = 18.0;
+  static const double radiusXl = 26.0;
 
   static final BorderRadius borderRadiusSm = BorderRadius.circular(radiusSm);
   static final BorderRadius borderRadiusMd = BorderRadius.circular(radiusMd);
@@ -24,17 +24,33 @@ abstract class AppStyles {
   // Card Elevation & Shadows
   static const List<BoxShadow> cardShadowLight = [
     BoxShadow(
-      color: Color(0x0A000000),
-      blurRadius: 10,
+      color: Color(0x080F172A),
+      blurRadius: 12,
       offset: Offset(0, 4),
     ),
   ];
 
   static const List<BoxShadow> cardShadowDark = [
     BoxShadow(
-      color: Color(0x33000000),
-      blurRadius: 10,
-      offset: Offset(0, 4),
+      color: Color(0x30000000),
+      blurRadius: 16,
+      offset: Offset(0, 6),
+    ),
+  ];
+
+  static const List<BoxShadow> fintechCardShadow = [
+    BoxShadow(
+      color: Color(0x33312E81),
+      blurRadius: 24,
+      offset: Offset(0, 12),
+    ),
+  ];
+
+  static const List<BoxShadow> glowGlacier = [
+    BoxShadow(
+      color: Color(0x3306B6D4),
+      blurRadius: 16,
+      offset: Offset(0, 6),
     ),
   ];
 }

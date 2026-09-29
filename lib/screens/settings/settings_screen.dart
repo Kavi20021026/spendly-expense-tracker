@@ -5,6 +5,7 @@ import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_styles.dart';
 import '../../providers/auth_provider.dart';
 import '../../providers/theme_provider.dart';
+import '../onboarding/onboarding_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -161,14 +162,31 @@ class SettingsScreen extends ConsumerWidget {
             const SizedBox(height: AppStyles.sm),
             Card(
               child: Column(
-                children: const [
+                children: [
                   ListTile(
+                    leading: const Icon(Icons.school_rounded),
+                    title: const Text('Spendly Feature Tour'),
+                    subtitle: const Text('Replay the onboarding walkthrough'),
+                    trailing: const Icon(Icons.chevron_right_rounded),
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (_) => OnboardingScreen(
+                            isReplay: true,
+                            onGetStarted: () => Navigator.of(context).pop(),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                  const Divider(height: 1),
+                  const ListTile(
                     leading: Icon(Icons.info_outline_rounded),
                     title: Text('Application Version'),
                     trailing: Text('1.0.0 (Production)'),
                   ),
-                  Divider(height: 1),
-                  ListTile(
+                  const Divider(height: 1),
+                  const ListTile(
                     leading: Icon(Icons.security_rounded),
                     title: Text('Data Privacy'),
                     subtitle: Text('Isolated Firestore rules per user'),

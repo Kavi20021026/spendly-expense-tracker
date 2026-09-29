@@ -25,11 +25,11 @@ class HomeScreen extends ConsumerWidget {
   String _getGreeting() {
     final hour = DateTime.now().hour;
     if (hour < 12) {
-      return 'Good morning ☀️';
+      return 'Good morning';
     } else if (hour < 17) {
-      return 'Good afternoon 👋';
+      return 'Good afternoon';
     } else {
-      return 'Good evening 🌙';
+      return 'Good evening';
     }
   }
 
@@ -95,7 +95,7 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppStyles.md),
+          padding: const EdgeInsets.symmetric(horizontal: AppStyles.md, vertical: AppStyles.sm),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -106,34 +106,144 @@ class HomeScreen extends ConsumerWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        _getGreeting(),
-                        style: theme.textTheme.bodyMedium?.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.6),
-                        ),
+                      Row(
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: const BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: AppColors.glacierMint,
+                            ),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            _getGreeting(),
+                            style: theme.textTheme.bodyMedium?.copyWith(
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                        ],
                       ),
+                      const SizedBox(height: 2),
                       Text(
                         userName,
                         style: theme.textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: -0.4,
                         ),
                       ),
                     ],
                   ),
+
+                  // Avatar Badge with subtle gradient ring
                   Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color: AppColors.primary.withOpacity(0.1),
+                    width: 46,
+                    height: 46,
+                    padding: const EdgeInsets.all(2),
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
+                      gradient: AppColors.fabGradient,
                     ),
-                    child: Center(
-                      child: Text(
-                        userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
-                        style: const TextStyle(
-                          color: AppColors.primary,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: theme.cardTheme.color,
+                      ),
+                      child: Center(
+                        child: Text(
+                          userName.isNotEmpty ? userName[0].toUpperCase() : 'U',
+                          style: const TextStyle(
+                            color: AppColors.primary,
+                            fontWeight: FontWeight.w800,
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: AppStyles.md),
+
+              // Luxury Fintech Hero Wallet Card
+              const MonthlySummaryCard(),
+              const SizedBox(height: AppStyles.md),
+
+              // Quick Action Bar
+              Row(
+                children: [
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const AddExpenseScreen(),
+                          ),
+                        );
+                      },
+                      borderRadius: AppStyles.borderRadiusMd,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: AppColors.primary.withValues(alpha: 0.1),
+                          borderRadius: AppStyles.borderRadiusMd,
+                          border: Border.all(
+                            color: AppColors.primary.withValues(alpha: 0.25),
+                          ),
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.add_circle_outline_rounded, size: 18, color: AppColors.primary),
+                            SizedBox(width: 8),
+                            Text(
+                              'Add Expense',
+                              style: TextStyle(
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w700,
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: AppStyles.sm),
+                  Expanded(
+                    child: InkWell(
+                      onTap: onNavigateToExpenses,
+                      borderRadius: AppStyles.borderRadiusMd,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.onSurface.withValues(alpha: 0.05),
+                          borderRadius: AppStyles.borderRadiusMd,
+                          border: Border.all(
+                            color: theme.dividerColor,
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.history_rounded,
+                              size: 18,
+                              color: theme.colorScheme.onSurface.withValues(alpha: 0.7),
+                            ),
+                            const SizedBox(width: 8),
+                            Text(
+                              'All Expenses',
+                              style: TextStyle(
+                                color: theme.colorScheme.onSurface,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 13.5,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -142,27 +252,31 @@ class HomeScreen extends ConsumerWidget {
               ),
               const SizedBox(height: AppStyles.lg),
 
-              // Monthly Summary Banner
-              const MonthlySummaryCard(),
-              const SizedBox(height: AppStyles.xl),
-
               // Recent Expenses Header & See All
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     'Recent Expenses',
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 18,
+                      letterSpacing: -0.2,
                     ),
                   ),
                   TextButton(
                     onPressed: onNavigateToExpenses,
-                    child: const Text('See All'),
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text('See All', style: TextStyle(fontWeight: FontWeight.w700)),
+                        Icon(Icons.arrow_forward_rounded, size: 14),
+                      ],
+                    ),
                   ),
                 ],
               ),
-              const SizedBox(height: AppStyles.sm),
+              const SizedBox(height: 6),
 
               // Recent Expenses List
               expensesAsync.when(

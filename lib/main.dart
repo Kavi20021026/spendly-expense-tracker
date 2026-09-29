@@ -8,7 +8,10 @@ import 'providers/auth_provider.dart';
 import 'providers/theme_provider.dart';
 import 'screens/auth/login_screen.dart';
 import 'screens/main_shell.dart';
-import 'widgets/loading_indicator.dart';
+
+import 'providers/onboarding_provider.dart';
+import 'screens/onboarding/onboarding_screen.dart';
+import 'screens/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,26 +49,67 @@ class SpendlyApp extends ConsumerWidget {
   }
 }
 
-/// Listens to Firebase Auth changes to route between LoginScreen and MainShell
-class AuthGate extends ConsumerWidget {
+/// Orchestrates smooth startup transitions:
+/// Native Splash -> Animated Brand Splash -> (Onboarding on 1st launch) -> Login / Main Dashboard.
+class AuthGate extends ConsumerStatefulWidget {
   const AuthGate({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authStateAsync = ref.watch(authStateProvider);
+  ConsumerState<AuthGate> createState() => _AuthGateState();
+}
 
-    return authStateAsync.when(
-      data: (user) {
-        if (user != null) {
-          return const MainShell();
-        } else {
-          return const LoginScreen();
-        }
-      },
-      loading: () => const Scaffold(
-        body: LoadingIndicator(message: 'Initializing Spendly...'),
-      ),
-      error: (error, stack) => const LoginScreen(),
+class _AuthGateState extends ConsumerState<AuthGate> {
+  bool _splashFinished = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final authStateAsync = ref.watch(authStateProvider);
+    final onboardingAsync = ref.watch(onboardingNotifierProvider);
+
+    Widget activeScreen;
+
+    if (!_splashFinished) {
+      activeScreen = SplashScreen(
+        key: const ValueKey('splash_screen'),
+        onFinish: () {
+          if (mounted) {
+            setState(() => _splashFinished = true);
+          }
+        },
+      );
+    } else {
+      activeScreen = authStateAsync.when(
+        data: (user) {
+          final hasCompletedOnboarding = onboardingAsync.value ?? false;
+          if (!hasCompletedOnboarding) {
+            return OnboardingScreen(
+              key: const ValueKey('onboarding_screen'),
+              onGetStarted: () {
+                ref.read(onboardingNotifierProvider.notifier).completeOnboarding();
+              },
+            );
+          }
+
+          if (user != null) {
+            return const MainShell(key: ValueKey('main_shell'));
+          }
+
+          return const LoginScreen(key: ValueKey('login_screen'));
+        },
+        loading: () => SplashScreen(
+          key: const ValueKey('splash_screen_waiting'),
+          onFinish: () {},
+        ),
+        error: (error, stack) => const LoginScreen(key: ValueKey('login_error')),
+      );
+    }
+
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 400),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
+      child: activeScreen,
     );
   }
 }
+

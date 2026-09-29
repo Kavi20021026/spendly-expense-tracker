@@ -16,6 +16,9 @@ Spendly is a modern, production-style personal expense tracker mobile applicatio
 - 🔎 **Search & Filter**: Search by title, note, or category name in real time. Filter by categories or date ranges.
 - 📈 **Visual Analytics**: Interactive doughnut spending distribution chart using `fl_chart`.
 - 🌙 **Dark Mode Support**: Material 3 Light and Dark themes with persistent user preferences saved via `shared_preferences`.
+- 🚀 **Interactive Onboarding Walkthrough**: 3-step interactive onboarding slider highlighting core benefits with persistent completion tracking and replay option in Settings.
+- ✨ **Animated Brand Splash Screen**: Smooth entry animations with seamless transition to authentication or dashboard.
+- 🎨 **Custom App Launcher Icons**: Handcrafted modern adaptive icons across Android, iOS, macOS, Web, and Windows.
 - 🔒 **User Data Security**: Strict user-level Firestore data isolation (`users/{userId}/expenses/{expenseId}`) enforced with Firestore Security Rules.
 - ⚡ **Offline-Ready & Real-Time**: Stream-based updates via Cloud Firestore for instant sync.
 

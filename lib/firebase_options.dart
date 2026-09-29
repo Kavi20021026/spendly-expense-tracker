@@ -41,46 +41,47 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDemoWebApiKeyForSpendlyApp123',
-    appId: '1:1234567890:web:1234567890abcdef',
-    messagingSenderId: '1234567890',
-    projectId: 'spendly-expense-tracker',
-    authDomain: 'spendly-expense-tracker.firebaseapp.com',
-    storageBucket: 'spendly-expense-tracker.appspot.com',
+    apiKey: 'AIzaSyCmGAKFPTJSGweXxEe_QKVfeQ7T4rM6UU4',
+    appId: '1:472726857570:web:18e30b2379511f36242e3b',
+    messagingSenderId: '472726857570',
+    projectId: 'spendly-84009',
+    authDomain: 'spendly-84009.firebaseapp.com',
+    storageBucket: 'spendly-84009.firebasestorage.app',
+    measurementId: 'G-GZ0RK68TY3',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDemoAndroidApiKeyForSpendlyApp',
-    appId: '1:1234567890:android:1234567890abcdef',
-    messagingSenderId: '1234567890',
-    projectId: 'spendly-expense-tracker',
-    storageBucket: 'spendly-expense-tracker.appspot.com',
+    apiKey: 'AIzaSyCJUbhPhk5h_IFgT4zxHcqhkSsvh8xrVfU',
+    appId: '1:472726857570:android:7eea8571d9dc455a242e3b',
+    messagingSenderId: '472726857570',
+    projectId: 'spendly-84009',
+    storageBucket: 'spendly-84009.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDemoIosApiKeyForSpendlyApp12',
-    appId: '1:1234567890:ios:1234567890abcdef',
-    messagingSenderId: '1234567890',
-    projectId: 'spendly-expense-tracker',
-    storageBucket: 'spendly-expense-tracker.appspot.com',
+    apiKey: 'AIzaSyCmGAKFPTJSGweXxEe_QKVfeQ7T4rM6UU4',
+    appId: '1:472726857570:ios:2796e84376e9c585242e3b',
+    messagingSenderId: '472726857570',
+    projectId: 'spendly-84009',
+    storageBucket: 'spendly-84009.firebasestorage.app',
     iosBundleId: 'com.spendly.spendly',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDemoMacosApiKeyForSpendlyApp',
-    appId: '1:1234567890:ios:1234567890abcdef',
-    messagingSenderId: '1234567890',
-    projectId: 'spendly-expense-tracker',
-    storageBucket: 'spendly-expense-tracker.appspot.com',
+    apiKey: 'AIzaSyCmGAKFPTJSGweXxEe_QKVfeQ7T4rM6UU4',
+    appId: '1:472726857570:ios:2796e84376e9c585242e3b',
+    messagingSenderId: '472726857570',
+    projectId: 'spendly-84009',
+    storageBucket: 'spendly-84009.firebasestorage.app',
     iosBundleId: 'com.spendly.spendly',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyDemoWindowsApiKeyForSpendlyApp',
-    appId: '1:1234567890:web:1234567890abcdef',
-    messagingSenderId: '1234567890',
-    projectId: 'spendly-expense-tracker',
-    authDomain: 'spendly-expense-tracker.firebaseapp.com',
-    storageBucket: 'spendly-expense-tracker.appspot.com',
+    apiKey: 'AIzaSyCmGAKFPTJSGweXxEe_QKVfeQ7T4rM6UU4',
+    appId: '1:472726857570:web:18e30b2379511f36242e3b',
+    messagingSenderId: '472726857570',
+    projectId: 'spendly-84009',
+    authDomain: 'spendly-84009.firebaseapp.com',
+    storageBucket: 'spendly-84009.firebasestorage.app',
   );
 }

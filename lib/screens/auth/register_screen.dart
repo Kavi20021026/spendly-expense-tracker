@@ -88,7 +88,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   Text(
                     'Create an account to begin tracking your expenses',
                     style: theme.textTheme.bodyMedium?.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.6),
+                      color: theme.colorScheme.onSurface.withValues(alpha: 0.6),
                     ),
                   ),
                   const SizedBox(height: AppStyles.lg),
@@ -179,18 +179,38 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
                   const SizedBox(height: AppStyles.lg),
 
                   // Register Button
-                  ElevatedButton(
-                    onPressed: authState.isLoading ? null : _submitRegister,
-                    child: authState.isLoading
-                        ? const SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2.5,
-                              color: Colors.white,
+                  Container(
+                    decoration: const BoxDecoration(
+                      gradient: AppColors.fabGradient,
+                      borderRadius: BorderRadius.all(Radius.circular(12)),
+                      boxShadow: AppStyles.glowGlacier,
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        shadowColor: Colors.transparent,
+                        minimumSize: const Size(double.infinity, 54),
+                      ),
+                      onPressed: authState.isLoading ? null : _submitRegister,
+                      child: authState.isLoading
+                          ? const SizedBox(
+                              width: 24,
+                              height: 24,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                                color: Colors.white,
+                              ),
+                            )
+                          : const Text(
+                              'Create Account',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                letterSpacing: 0.3,
+                              ),
                             ),
-                          )
-                        : const Text('Create Account'),
+                    ),
                   ),
                   const SizedBox(height: AppStyles.md),
 

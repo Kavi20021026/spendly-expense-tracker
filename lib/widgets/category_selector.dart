@@ -3,7 +3,7 @@ import '../core/constants/app_styles.dart';
 import '../core/constants/categories.dart';
 import '../models/category.dart';
 
-/// Interactive Grid / List Category Selector for forms and filters.
+/// Interactive Grid Category Selector with modern glowing pills.
 class CategorySelector extends StatelessWidget {
   final String selectedCategoryName;
   final ValueChanged<Category> onCategorySelected;
@@ -26,9 +26,10 @@ class CategorySelector extends StatelessWidget {
       children: [
         if (!isFilter) ...[
           Text(
-            'Select Category',
+            'Expense Category',
             style: theme.textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
+              fontSize: 15,
             ),
           ),
           const SizedBox(height: AppStyles.sm),
@@ -38,9 +39,9 @@ class CategorySelector extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 3,
-            childAspectRatio: 2.2,
-            crossAxisSpacing: AppStyles.sm,
-            mainAxisSpacing: AppStyles.sm,
+            childAspectRatio: 2.3,
+            crossAxisSpacing: 8,
+            mainAxisSpacing: 8,
           ),
           itemCount: categories.length,
           itemBuilder: (context, index) {
@@ -52,33 +53,43 @@ class CategorySelector extends StatelessWidget {
               onTap: () => onCategorySelected(category),
               borderRadius: AppStyles.borderRadiusMd,
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 180),
                 decoration: BoxDecoration(
                   color: isSelected
-                      ? category.color.withOpacity(0.15)
+                      ? category.color.withValues(alpha: 0.16)
                       : theme.cardTheme.color,
                   borderRadius: AppStyles.borderRadiusMd,
                   border: Border.all(
                     color: isSelected ? category.color : theme.dividerColor,
                     width: isSelected ? 2 : 1,
                   ),
+                  boxShadow: isSelected
+                      ? [
+                          BoxShadow(
+                            color: category.color.withValues(alpha: 0.25),
+                            blurRadius: 10,
+                            offset: const Offset(0, 3),
+                          )
+                        ]
+                      : null,
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       category.icon,
-                      size: 18,
-                      color: isSelected ? category.color : theme.colorScheme.onSurface.withOpacity(0.7),
+                      size: 17,
+                      color: isSelected ? category.color : theme.colorScheme.onSurface.withValues(alpha: 0.65),
                     ),
                     const SizedBox(width: 6),
                     Flexible(
                       child: Text(
                         category.name,
                         overflow: TextOverflow.ellipsis,
-                        style: theme.textTheme.bodySmall?.copyWith(
+                        style: TextStyle(
                           color: isSelected ? category.color : theme.colorScheme.onSurface,
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                          fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                          fontSize: 12.5,
                         ),
                       ),
                     ),

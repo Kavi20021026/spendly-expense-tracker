@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 import '../core/constants/app_colors.dart';
+import '../core/constants/app_styles.dart';
 import 'analytics/analytics_screen.dart';
 import 'expenses/add_expense_screen.dart';
 import 'expenses/expenses_screen.dart';
 import 'home/home_screen.dart';
 import 'settings/settings_screen.dart';
 
-/// MainShell manages bottom navigation and tab switching.
+/// MainShell manages bottom navigation and tab switching with a modern Fintech aesthetic.
 class MainShell extends StatefulWidget {
   const MainShell({super.key});
 
@@ -20,6 +21,9 @@ class _MainShellState extends State<MainShell> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final isDark = theme.brightness == Brightness.dark;
+
     final List<Widget> pages = [
       HomeScreen(
         onNavigateToExpenses: () {
@@ -38,21 +42,38 @@ class _MainShellState extends State<MainShell> {
         index: _currentIndex,
         children: pages,
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => const AddExpenseScreen(),
+      floatingActionButton: Container(
+        height: 58,
+        width: 58,
+        decoration: const BoxDecoration(
+          shape: BoxShape.circle,
+          gradient: AppColors.fabGradient,
+          boxShadow: AppStyles.glowGlacier,
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(29),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const AddExpenseScreen(),
+                ),
+              );
+            },
+            child: const Center(
+              child: Icon(Icons.add_rounded, size: 32, color: Colors.white),
             ),
-          );
-        },
-        tooltip: 'Add Expense',
-        child: const Icon(Icons.add_rounded, size: 28),
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: NavigationBar(
         selectedIndex: _currentIndex,
+        indicatorColor: isDark
+            ? AppColors.primary.withValues(alpha: 0.35)
+            : AppColors.primary.withValues(alpha: 0.12),
         onDestinationSelected: (index) {
           setState(() {
             _currentIndex = index;
@@ -60,8 +81,8 @@ class _MainShellState extends State<MainShell> {
         },
         destinations: const [
           NavigationDestination(
-            icon: Icon(Icons.home_outlined),
-            selectedIcon: Icon(Icons.home_rounded, color: AppColors.primary),
+            icon: Icon(Icons.grid_view_rounded),
+            selectedIcon: Icon(Icons.grid_view_rounded, color: AppColors.primary),
             label: 'Home',
           ),
           NavigationDestination(

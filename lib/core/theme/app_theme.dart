@@ -4,14 +4,15 @@ import '../constants/app_styles.dart';
 
 /// AppTheme builds Material 3 light and dark theme data for Spendly.
 abstract class AppTheme {
-  /// Light theme configuration
+  /// Light theme configuration (Vanilla Mist & Nordic Indigo)
   static ThemeData get lightTheme {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.light,
       primary: AppColors.primary,
       onPrimary: Colors.white,
-      secondary: AppColors.accent,
+      secondary: AppColors.glacier,
+      tertiary: AppColors.glacierMint,
       surface: AppColors.lightSurface,
       onSurface: AppColors.lightTextPrimary,
       error: AppColors.error,
@@ -32,6 +33,7 @@ abstract class AppTheme {
           color: AppColors.lightTextPrimary,
           fontSize: 20,
           fontWeight: FontWeight.bold,
+          letterSpacing: -0.3,
         ),
       ),
       cardTheme: CardThemeData(
@@ -77,13 +79,14 @@ abstract class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          minimumSize: const Size(double.infinity, 52),
+          minimumSize: const Size(double.infinity, 54),
           shape: RoundedRectangleBorder(
             borderRadius: AppStyles.borderRadiusMd,
           ),
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
+            letterSpacing: 0.2,
           ),
           elevation: 0,
         ),
@@ -91,8 +94,8 @@ abstract class AppTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.primary,
-          minimumSize: const Size(double.infinity, 52),
-          side: const BorderSide(color: AppColors.primary),
+          minimumSize: const Size(double.infinity, 54),
+          side: const BorderSide(color: AppColors.primary, width: 1.5),
           shape: RoundedRectangleBorder(
             borderRadius: AppStyles.borderRadiusMd,
           ),
@@ -105,7 +108,7 @@ abstract class AppTheme {
       floatingActionButtonTheme: FloatingActionButtonThemeData(
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
-        elevation: 4,
+        elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: AppStyles.borderRadiusLg,
         ),
@@ -124,14 +127,15 @@ abstract class AppTheme {
     );
   }
 
-  /// Dark theme configuration
+  /// Dark theme configuration (Midnight Obsidian & Glacier Mint)
   static ThemeData get darkTheme {
     final colorScheme = ColorScheme.fromSeed(
       seedColor: AppColors.primary,
       brightness: Brightness.dark,
       primary: AppColors.primaryLight,
       onPrimary: Colors.white,
-      secondary: AppColors.accent,
+      secondary: AppColors.glacier,
+      tertiary: AppColors.glacierMint,
       surface: AppColors.darkSurface,
       onSurface: AppColors.darkTextPrimary,
       error: AppColors.error,
@@ -152,6 +156,7 @@ abstract class AppTheme {
           color: AppColors.darkTextPrimary,
           fontSize: 20,
           fontWeight: FontWeight.bold,
+          letterSpacing: -0.3,
         ),
       ),
       cardTheme: CardThemeData(
@@ -180,7 +185,7 @@ abstract class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: AppStyles.borderRadiusMd,
-          borderSide: const BorderSide(color: AppColors.primaryLight, width: 2),
+          borderSide: const BorderSide(color: AppColors.glacier, width: 2),
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: AppStyles.borderRadiusMd,
@@ -197,7 +202,7 @@ abstract class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primaryLight,
           foregroundColor: Colors.white,
-          minimumSize: const Size(double.infinity, 52),
+          minimumSize: const Size(double.infinity, 54),
           shape: RoundedRectangleBorder(
             borderRadius: AppStyles.borderRadiusMd,
           ),
@@ -210,9 +215,9 @@ abstract class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          foregroundColor: AppColors.primaryLight,
-          minimumSize: const Size(double.infinity, 52),
-          side: const BorderSide(color: AppColors.primaryLight),
+          foregroundColor: AppColors.glacierLight,
+          minimumSize: const Size(double.infinity, 54),
+          side: const BorderSide(color: AppColors.glacier, width: 1.5),
           shape: RoundedRectangleBorder(
             borderRadius: AppStyles.borderRadiusMd,
           ),
@@ -223,16 +228,16 @@ abstract class AppTheme {
         ),
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: AppColors.primaryLight,
+        backgroundColor: AppColors.glacier,
         foregroundColor: Colors.white,
-        elevation: 4,
+        elevation: 6,
         shape: RoundedRectangleBorder(
           borderRadius: AppStyles.borderRadiusLg,
         ),
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.darkSurface,
-        selectedItemColor: AppColors.primaryLight,
+        selectedItemColor: AppColors.glacier,
         unselectedItemColor: AppColors.darkTextSecondary,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
